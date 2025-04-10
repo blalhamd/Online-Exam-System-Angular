@@ -1,0 +1,69 @@
+<div class="container py-5" *ngIf="score">
+  <div class="text-center mb-4">
+    <h2 class="mb-2">Your Exam Score</h2>
+    <span class="badge" [ngClass]="{ 'bg-success': isPassed, 'bg-danger': !isPassed }">
+      {{ isPassed ? 'Passed' : 'Failed' }}
+    </span>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card text-center p-3 shadow-sm">
+        <h5>Score</h5>
+        <p class="display-6">{{ score.score }} / {{ score.totalGrade }}</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center p-3 shadow-sm">
+        <h5>Percentage</h5>
+        <p class="display-6">{{ score.scoreInPercentage | number : '1.0-2' }}%</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center p-3 shadow-sm">
+        <h5>Correct / Wrong</h5>
+        <p class="display-6">
+          {{ score.numberCorrectQuestions }} /
+          {{ score.numberWrongQuestions }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h5>Answered Questions</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Question</th>
+            <th>Grade</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let q of score.answeredQuestions; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ q.title }}</td>
+            <td>{{ q.gradeOfQuestion }}</td>
+            <td>
+              <span [ngClass]="{
+                  'text-success fw-bold': q.isCorrect,
+                  'text-danger fw-bold': !q.isCorrect
+                }">
+                {{ q.isCorrect ? 'Correct' : 'Wrong' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-end mt-4">
+    <button class="btn btn-secondary" (click)="goBack()">Back to Exams</button>
+  </div>
+</div>

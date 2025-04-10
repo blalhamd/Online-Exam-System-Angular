@@ -1,0 +1,26 @@
+<div class="row p-4 my-2">
+  <h3 class="text-center mb-4">Students List</h3>
+
+  <!-- Button to navigate to Add Teacher Form -->
+  <a class="btn btn-primary mb-4" *ngIf="hasPermissions('Permissions.Users.AddStudent')"
+    [routerLink]="['/admin/students/add']" routerLinkActive="router-link-active">Add New
+    Student</a>
+
+  <!-- Table displaying the list of teachers -->
+  <table class="table table-striped table-responsive table-hover">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.fullName }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.phoneNumber }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,29 @@
+.question-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.question-header {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.choice-item {
+  padding: 8px 0;
+}
+
+.choice-item .form-check-label {
+  font-size: 1rem;
+}
+
+.exam-details p {
+  font-size: 1.1rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+  color: #007bff;
+}

@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+    box-sizing: 0;
+}
+
+/* Custom card styling for login page*/
+.card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+h3 {
+  color: #333333;
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.invalid-feedback {
+  display: block;
+  font-size: 0.875rem;
+  color: #e74c3c;
+}
+
+.btn-primary {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-primary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+a {
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* end */
+
+.content {
+  padding-bottom: 50px;  /* Ensure content doesn't overlap with the footer */
+}

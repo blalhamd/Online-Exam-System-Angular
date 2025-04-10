@@ -1,0 +1,21 @@
+/* Default: Let the carousel image adapt naturally */
+#heroCarousel img {
+  height: auto;
+  object-fit: cover;
+}
+
+/* Apply fixed height only on large screens (≥ 992px) */
+@media (min-width: 992px) {
+  #heroCarousel {
+    height: 580px;
+  }
+
+  #heroCarousel img {
+    height: 580px;
+    object-fit: cover;
+  }
+}
+.carousel-item {
+  height: 100%;
+}
+

@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <div *ngIf="exam">
+    <!-- Exam Header -->
+    <div class="row mb-4">
+      <!-- Subject Name and ID -->
+      <div class="col-md-3">
+        <p><strong>Subject:</strong> {{ exam.subjectName }}</p>
+        <p><strong>ID:</strong> {{ exam.id }}</p>
+      </div>
+      <!-- Total Grade and Level -->
+      <div class="col-md-3">
+        <p><strong>Total Grade:</strong> {{ exam.totalGrade }}</p>
+        <p><strong>Level:</strong> {{ exam.level }}</p>
+      </div>
+      <!-- Duration and Exam Type -->
+      <div class="col-md-3">
+        <p><strong>Duration:</strong> {{ exam.duration.slice(0,5) }}</p>
+        <p><strong>Exam Type:</strong> {{ exam.examType }}</p>
+      </div>
+      <!-- Description and Status -->
+      <div class="col-md-3">
+        <p><strong>Description:</strong> {{ exam.description }}</p>
+        <p><strong>Status:</strong> {{ exam.status ? 'Active' : 'Inactive' }}</p>
+      </div>
+    </div>
+
+    <!-- Questions Section -->
+    <div class="questions">
+      <h4 class="mb-4">Choose Questions</h4>
+      <div *ngFor="let question of exam.chooseQuestions; let i = index" class="question-card mb-4">
+
+        <!-- Question Title and Grade -->
+        <div class="question-header mb-2">
+          <h5><strong>Q{{ i + 1 }}:</strong> {{ question.title }}</h5>
+          <p><strong>Grade:</strong> {{ question.gradeOfQuestion }}</p>
+        </div>
+
+        <!-- Choices Section -->
+        <div class="choices">
+          <ul class="list-unstyled">
+            <li *ngFor="let choice of question.choices; let j = index" class="choice-item">
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="choice-{{ i }}-{{ j }}" disabled />
+                <label class="form-check-label" for="choice-{{ i }}-{{ j }}">
+                  {{ choice.text }}
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

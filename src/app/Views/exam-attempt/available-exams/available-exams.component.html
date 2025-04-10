@@ -1,0 +1,27 @@
+<div class="row p-4 my-2">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Subject</th>
+        <th>Total Grade</th>
+        <th>Level</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of exams">
+        <td>{{ exam.id }}</td>
+        <td>{{ exam.subjectName }}</td>
+        <td>{{ exam.totalGrade }}</td>
+        <td>{{ exam.level }}</td>
+        <td>{{ exam.status ? 'Active' : 'Inactive' }}</td>
+        <td>
+          <a [routerLink]="['/user/examAttempts/template', exam.id]"
+            *ngIf="hasPermission('Permissions.ExamAttempts.StartExam')" class="btn btn-success m-1">Start Exam</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

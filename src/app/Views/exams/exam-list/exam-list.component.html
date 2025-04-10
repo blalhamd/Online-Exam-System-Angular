@@ -1,0 +1,41 @@
+<div class="row p-4 my-2">
+  <!-- Button to navigate to Add New Exam Form -->
+  <a class="btn btn-primary mb-4" *ngIf="hasPermission('Permissions.Exams.Create')" [routerLink]="['/admin/exams/add']"
+    routerLinkActive="router-link-active">Add New
+    Exam</a>
+  <div class="exam-list">
+    <h3>Exams</h3>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Subject</th>
+          <th>Total Grade</th>
+          <th>Level</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exam of exams">
+          <td>{{ exam.id }}</td>
+          <td>{{ exam.subjectName }}</td>
+          <td>{{ exam.totalGrade }}</td>
+          <td>{{ exam.level }}</td>
+          <td>{{ exam.status ? 'Active' : 'Inactive' }}</td>
+          <td>
+            <!-- Action buttons like Edit/Delete can go here -->
+            <a [routerLink]="['/user/exams/list', exam.id]" *ngIf="hasPermission('Permissions.Exams.ViewById')"
+              class="btn btn-success m-1">View</a>
+            <a [routerLink]="['/admin/exams/list/edit', exam.id]" *ngIf="hasPermission('Permissions.Exams.Edit')"
+              class="btn btn-primary m-1">Edit</a>
+            <a (click)="deleteExam(exam.id)" *ngIf="hasPermission('Permissions.Exams.Delete')"
+              class="btn btn-danger m-1">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

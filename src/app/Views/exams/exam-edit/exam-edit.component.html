@@ -1,0 +1,109 @@
+<div class="row p-4 my-2">
+  <h3 class="text-center mb-4">Edit Exam</h3>
+
+  <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+    <!-- Exam Info -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="subject" class="form-label">Select Subject</label>
+        <select id="subject" class="form-select" formControlName="subjectId">
+          <option *ngFor="let subject of subjects" [value]="subject?.id">{{ subject?.name }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="totalGrade" class="form-label">Total Grade</label>
+        <input type="number" class="form-control" id="totalGrade" formControlName="totalGrade" />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="level" class="form-label">Level</label>
+        <input type="number" class="form-control" id="level" formControlName="level" />
+      </div>
+
+      <div class="col-md-6">
+        <label for="duration" class="form-label">Duration (hh:mm:ss)</label>
+        <input type="text" class="form-control" id="duration" formControlName="duration" />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="examType" class="form-label">Exam Type</label>
+        <select id="examType" class="form-select" formControlName="examType">
+          <option [ngValue]="examType.Quiz">Quiz</option>
+          <option [ngValue]="examType.Final">Final</option>
+          <option [ngValue]="examType.MidTerm">MidTerm</option>
+          <option [ngValue]="examType.Practice">Practice</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+      </div>
+    </div>
+
+    <div class="form-check mb-4">
+      <input class="form-check-input" type="checkbox" id="status" formControlName="status" />
+      <label class="form-check-label" for="status">Active</label>
+    </div>
+
+    <!-- Questions Section -->
+    <div class="mb-4">
+      <h5>Choose Questions</h5>
+      <div formArrayName="chooseQuestions">
+        <div *ngFor="let questionGroup of chooseQuestions.controls; let i = index" [formGroupName]="i"
+          class="border rounded p-3 mb-4">
+          <div class="row mb-3">
+            <div class="col-md-5">
+              <label class="form-label">Question Title</label>
+              <input class="form-control" formControlName="title" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">Grade</label>
+              <input class="form-control" type="number" formControlName="gradeOfQuestion" />
+            </div>
+
+            <div class="col-md-4 d-flex align-items-end">
+              <button type="button" class="btn btn-danger" (click)="removeQuestion(i)">Remove</button>
+            </div>
+          </div>
+
+          <!-- Choices for each question -->
+          <div formArrayName="choices">
+            <div *ngFor="let choiceGroup of getChoicesArray(questionGroup).controls; let j = index" [formGroupName]="j"
+              class="row mb-2">
+              <div class="col-md-6">
+                <label class="form-label">Choice {{ j + 1 }}</label>
+                <input class="form-control" formControlName="text" />
+              </div>
+
+              <div class="col-md-3 d-flex align-items-end">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" [value]="j"
+                    [checked]="questionGroup.get('correctAnswerIndex')?.value === j"
+                    (change)="questionGroup.get('correctAnswerIndex')?.setValue(j)" />
+                  <label class="form-check-label">Correct Answer</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary" (click)="addQuestion()">Add Question</button>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-success" [disabled]="examForm.invalid">
+        Update Exam
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
