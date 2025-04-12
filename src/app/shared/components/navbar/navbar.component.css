@@ -24,6 +24,7 @@
 /* For active link */
 .active-link {
   color: green;  /* Set the active link color to green */
+  font-weight: bold;
 }
 
 /* For inactive link */

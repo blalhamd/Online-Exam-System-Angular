@@ -4,7 +4,7 @@
       <div class="card-body">
         <h3 class="text-center mb-4">Login to Your Account</h3>
 
-        <form [formGroup]="loginModel" (ngSubmit)="onSubmit(loginModel)">
+        <form [formGroup]="loginModel" (ngSubmit)="onSubmit(loginModel)" [class.disabled]="loading">
           <div class="form-group mb-3">
             <label for="email" class="form-label">Email Address</label>
             <input type="email" formControlName="email" class="form-control" id="email"
@@ -25,7 +25,11 @@
           </div>
 
           <div class="form-group d-grid gap-2">
-            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            <!-- <button type="submit" class="btn btn-primary btn-lg">Login</button> -->
+            <button class="btn btn-primary" type="submit" [disabled]="loading">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+              Login
+            </button>
           </div>
         </form>
 

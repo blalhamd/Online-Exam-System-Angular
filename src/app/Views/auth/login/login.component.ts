@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
     // Call the AuthService to perform the login
     this._authService.login(model.value).subscribe({
       next: (response) => {
-        console.log(response);
         this.loading = false;
         this._authService.setToken(response.token);
         this._authService.decodeUserData(response.token);

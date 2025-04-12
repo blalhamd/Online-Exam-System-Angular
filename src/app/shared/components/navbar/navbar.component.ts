@@ -18,6 +18,7 @@ export class NavbarComponent {
       next: () => {
         if (this._authService.userData.getValue() !== null) {
           this.isLogin = true;
+          this.userPermissions = this._authService.getPermissions(); // ✅ refresh on login to get on links in navbar
         } else {
           this.isLogin = false;
         }
